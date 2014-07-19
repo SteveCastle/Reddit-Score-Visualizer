@@ -87,3 +87,7 @@ body {
         border-bottom: 0;
     }
 }
+
+svg{
+    width:100%;
+}

@@ -7,7 +7,6 @@ d3.chart.table = function(){
 	var data;
 	function chart(el){
 		var table = el.append('table').classed('table', true);
-        console.log(data);
 		var rows = table.selectAll('tr.rows')
 		.data(data);
 
@@ -25,10 +24,11 @@ d3.chart.table = function(){
 		.attr({href: function(d){return d.data.url;}})
 		.text(function(d){return d.data.title;});
 
-		console.log(el);
+        newRows.append('td')
+		.text(function(d){return d.data.created;});
+
 	}
 
 	chart.data = function(d) {data = d; return chart;};
 	return chart;
 };
-
