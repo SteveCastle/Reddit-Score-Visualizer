@@ -13,11 +13,13 @@ d3.chart.scatterplot = function(){
 
         var yScale = d3.scale.linear()
         .domain([0,maxScore])
-        .range([60,0]);
+        .range([400,0]);
 
         var xScale = d3.time.scale()
         .domain(d3.extent(data, function(d){return d.data.created;}))
         .range([0,600]);
+
+
 
         var g = el.append('g').
         attr('transform', 'translate(27,50)');

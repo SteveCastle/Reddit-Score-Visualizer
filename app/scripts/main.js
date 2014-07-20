@@ -6,6 +6,7 @@ d3.json('http://www.reddit.com/r/pics.json', function(error, json){
 
 	var display = d3.select('#display');
 	var sdiv = display.append('svg').classed('scatter', true);
+	var bdiv = display.append('svg').classed('brush', true);
 	var tdiv = display.append('div').classed('table', true);
 
 	var table = d3.chart.table();
@@ -15,6 +16,9 @@ d3.json('http://www.reddit.com/r/pics.json', function(error, json){
 	var scatter = d3.chart.scatterplot();
     scatter.data(data);
     scatter(sdiv);
-
+    
+	var brush = d3.chart.brush();
+    brush.data(data);
+    brush(bdiv);
 
 });
