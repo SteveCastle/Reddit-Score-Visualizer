@@ -27,6 +27,8 @@ d3.chart.table = function(){
         newRows.append('td')
 		.text(function(d){return d.data.created;});
 
+		rows.exit().remove();
+
 	}
 
 	chart.data = function(d) {data = d; return chart;};

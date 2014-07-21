@@ -5,7 +5,7 @@ d3.json('http://www.reddit.com/r/pics.json', function(error, json){
 	data.forEach(function(d){d.data.created *=1000;});
 
 	var display = d3.select('#display');
-	var sdiv = display.append('svg').classed('scatter', true);
+	var sdiv = display.append('svg').classed('scatter', true).append('g').classed('scatter', true);
 	var bdiv = display.append('svg').classed('brush', true);
 	var tdiv = display.append('div').classed('table', true);
 
@@ -16,9 +16,15 @@ d3.json('http://www.reddit.com/r/pics.json', function(error, json){
 	var scatter = d3.chart.scatterplot();
     scatter.data(data);
     scatter(sdiv);
-    
 	var brush = d3.chart.brush();
     brush.data(data);
     brush(bdiv);
+
+    brush.on('filter', function(filtered){
+        console.log('filtered',filtered);
+        scatter.data(filtered);
+        scatter.update();
+    });
+
 
 });

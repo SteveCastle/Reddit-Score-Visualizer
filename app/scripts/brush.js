@@ -7,6 +7,8 @@ d3.chart.brush = function(){
 	var data;
 	var width = 600;
 	var height = 30;
+	var dispatch = d3.dispatch(chart,'filter');
+
 	function chart(el){
 		var extent = d3.extent(data, function(d){
 			return d.data.created;
@@ -35,7 +37,7 @@ d3.chart.brush = function(){
             var filtered = data.filter(function(d){
                 return (d.data.created > ext[0] && d.data.created < ext[1]);
             });
-            console.log(filtered);
+            dispatch.filter(filtered);
         });
 
 	}
@@ -45,5 +47,5 @@ d3.chart.brush = function(){
 
 
 	chart.data = function(d) {data = d; return chart;};
-	return chart;
+	return d3.rebind (chart, dispatch, 'on');
 };
