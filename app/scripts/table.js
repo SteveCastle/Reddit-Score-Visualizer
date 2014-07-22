@@ -4,6 +4,7 @@
 if(!d3.chart) {d3.chart = {};}
 
 d3.chart.table = function(){
+	var dispatch = d3.dispatch(chart,'hover');
 	var data;
 	function chart(el){
 		var table = el.append('table').classed('table', true);
@@ -29,8 +30,16 @@ d3.chart.table = function(){
 
 		rows.exit().remove();
 
+		newRows.on('mouseover', function(d){
+			d3.select(this).style('opacity',.9);
+            dispatch.hover(d);
+		});
+		newRows.on('mouseout', function(d){
+			d3.select(this).style('opacity',1);
+            dispatch.hover([]);
+		});
 	}
 
 	chart.data = function(d) {data = d; return chart;};
-	return chart;
+	return d3.rebind (chart, dispatch, 'on');
 };

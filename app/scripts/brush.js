@@ -5,8 +5,6 @@ if(!d3.chart) {d3.chart = {};}
 
 d3.chart.brush = function(){
 	var data;
-	var width = 600;
-	var height = 30;
 	var dispatch = d3.dispatch(chart,'filter');
 
 	function chart(el){
@@ -15,7 +13,7 @@ d3.chart.brush = function(){
 		});
 		var scale = d3.time.scale()
 		.domain(extent)
-		.range([10,600]);
+		.range([0,600]);
 
 		var brush = d3.svg.brush();
 		brush.x(scale);
